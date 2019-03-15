@@ -1,4 +1,4 @@
-package com.vanv.kafka;
+package com.vanvov.kafka;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

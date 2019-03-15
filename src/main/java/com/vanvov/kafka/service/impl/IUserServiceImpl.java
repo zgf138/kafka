@@ -1,8 +1,8 @@
-package com.vanv.kafka.service.impl;
+package com.vanvov.kafka.service.impl;
 
-import com.vanv.kafka.dao.IUserMapper;
-import com.vanv.kafka.domain.User;
-import com.vanv.kafka.service.IUserService;
+import com.vanvov.kafka.dao.IUserMapper;
+import com.vanvov.kafka.domain.User;
+import com.vanvov.kafka.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

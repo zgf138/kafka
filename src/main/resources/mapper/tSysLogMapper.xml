@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.vanvov.kafka.dao.TSysLogDao" >
+
+	<resultMap id="tSysLogResultMap" type="com.vanvov.kafka.domain.TSysLog" >
+	    <id column="log_id" property="log_id" jdbcType="VARCHAR" />
+	    <result column="user_id" property="user_id" jdbcType="VARCHAR" />
+	    <result column="module_name" property="module_name" jdbcType="VARCHAR" />
+	    <result column="operate" property="operate" jdbcType="VARCHAR" />
+	    <result column="oper_time" property="oper_time" jdbcType="TIMESTAMP" />
+	    <result column="class_name" property="class_name" jdbcType="VARCHAR" />
+	    <result column="method_name" property="method_name" jdbcType="VARCHAR" />
+	    <result column="params" property="params" jdbcType="VARCHAR" />
+	    <result column="results" property="results" jdbcType="VARCHAR" />
+	    <result column="oper_ip" property="oper_ip" jdbcType="VARCHAR" />
+	    <result column="memo" property="memo" jdbcType="VARCHAR" />
+    </resultMap>
+	<sql id="tSysLog_column_list" >
+    	log_id,user_id,module_name,operate,oper_time,class_name,method_name,params,results,oper_ip,memo
+    </sql>
+  
+	<!--新增用户 -->
+ 	<insert id="insertTSysLog" parameterType="com.vanvov.kafka.domain.TSysLog" >
+		insert into t_sys_log (<include refid="tSysLog_column_list" />)
+		values (#{log_id},#{user_id},#{module_name},#{operate},#{oper_time},#{class_name},#{method_name},#{params},#{results},#{oper_ip},#{memo})
+	</insert>
+
+	<!-- <select id="queryAllRole" parameterType="java.util.HashMap" resultMap="roleResultMap">  
+		select 
+			<include refid="role_column_list" />
+		from t_sys_role 
+	</select> -->
+	
+	<select id="queryTSysLogGridByList" parameterType="java.util.HashMap" resultType="java.util.HashMap">  
+		select 
+			us.user_name,
+			l.log_id,l.user_id,l.module_name,l.operate,l.oper_time,l.class_name,l.method_name,l.params,l.results,l.oper_ip,l.memo	
+		from t_sys_user us
+		right join t_sys_log l on us.user_id = l.user_id
+		 where 1=1
+		<if test="user_id != null and user_id != ''">
+			<![CDATA[
+			     and l.user_id = #{user_id}
+			]]>
+		</if>
+		<if test="module_name != null and module_name != ''">
+			<![CDATA[  
+				and l.module_name = #{module_name}
+			]]>
+		</if>
+		<if test="operate != null and operate != ''">
+			<![CDATA[  
+			     and l.operate = #{operate}
+			]]>
+		</if>
+		<if test="create_dates != null and create_dates != '' and (create_datee == null || create_datee == '')">
+			<![CDATA[  
+			    and l.oper_time >= #{create_dates}
+			]]>
+		</if>
+		<if test="create_datee != null and create_datee != '' and (create_dates == null || create_dates == '')">
+			<![CDATA[  
+			    and l.oper_time <= #{create_datee}
+			]]>
+		</if>
+		<if test="create_dates != null and create_dates != '' and create_datee != null and create_datee != ''">
+			<![CDATA[  
+			    and l.oper_time >= #{create_dates} and l.oper_time <= #{create_datee}
+			]]>
+		</if>
+		<if test="limit != null and limit != ''">
+			<![CDATA[  
+			   order by l.oper_time desc limit #{BEGIN_NUM},#{END_NUM}
+			]]>
+		</if>
+	</select>
+	
+	<select id="queryTSysLogGridByTotal" parameterType="java.util.HashMap" resultType="java.lang.Long">  
+        <![CDATA[  
+			select ifnull(count(*),0) from t_sys_log where 1=1 
+		]]>
+		<if test="user_id != null and user_id != ''">
+			<![CDATA[
+			     and user_id = #{user_id}
+			]]>
+		</if>
+		<if test="module_name != null and module_name != ''">
+			<![CDATA[  
+				and module_name = #{module_name}
+			]]>
+		</if>
+		<if test="operate != null and operate != ''">
+			<![CDATA[  
+			     and operate =  #{operate}
+			]]>
+		</if>
+		<if test="create_dates != null and create_dates != '' and (create_datee == null || create_datee == '')">
+			<![CDATA[  
+			    and oper_time >= #{create_dates}
+			]]>
+		</if>
+		<if test="create_datee != null and create_datee != '' and (create_dates == null || create_dates == '')">
+			<![CDATA[  
+			    and oper_time <= #{create_datee}
+			]]>
+		</if>
+		<if test="create_dates != null and create_dates != '' and create_datee != null and create_datee != ''">
+			<![CDATA[  
+			    and oper_time >= #{create_dates} and oper_time <= #{create_datee}
+			]]>
+		</if>
+	</select>
+	
+	
+	<!-- 通过日志Id -->
+	<select id="queryLogById" parameterType="java.lang.String" resultMap="tSysLogResultMap" >  
+		select
+			<include refid="tSysLog_column_list" />
+		from t_sys_log where log_id = #{id}
+	</select>
+
+</mapper>

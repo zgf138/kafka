@@ -1,6 +1,6 @@
-package com.vanv.kafka.service;
+package com.vanvov.kafka.service;
 
-import com.vanv.kafka.domain.User;
+import com.vanvov.kafka.domain.User;
 
 public interface IUserService {
     User getUser(String username);

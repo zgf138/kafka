@@ -1,4 +1,4 @@
-package com.vanv.kafka.domain;
+package com.vanvov.kafka.domain;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
