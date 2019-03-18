@@ -26,12 +26,12 @@ public class SimpleConsumer {
     @KafkaListener(topics = {"basic-log"})
     public void receive(String message) throws InterruptedException {
         String substring = message.substring(message.indexOf("{"));
-        System.out.println("---------------------------------------"+substring);
-        if (StringUtils.isNotBlank(substring)){
+        System.out.println("---------------------------------------" + substring);
+        if (StringUtils.isNotBlank(substring)) {
             JSONObject jsonObject = JSONObject.parseObject(substring);
             TSysLog tSysLog = JSONObject.toJavaObject(jsonObject, TSysLog.class);
             sysLogService.addTSysLog(tSysLog);
-            System.out.println("消费了"+JSONObject.toJSON(tSysLog).toString());
+            System.out.println("消费了" + JSONObject.toJSON(tSysLog).toString());
             mongoTemplate.save(tSysLog, "log");
         }
 

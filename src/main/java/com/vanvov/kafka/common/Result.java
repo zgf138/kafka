@@ -4,60 +4,60 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- *
+ *返回字段封装
  */
 @SuppressWarnings("serial")
-public class Result implements Serializable{
+public class Result implements Serializable {
 
-	private boolean success = true;// 是否成功
-	private String msg = "操作成功";// 提示信息
-	private Object obj = null;// 其他信息
-	private Map<String, Object> attributes;// 其他参数
-	private String grid; //表格json数据
-	
-	public Map<String, Object> getAttributes() {
-		return attributes;
-	}
+    private boolean success = true;// 是否成功
+    private String msg = "操作成功";// 提示信息
+    private Object obj = null;// 其他信息
+    private Map<String, Object> attributes;// 其他参数
+    private String grid; //表格json数据
 
-	public void setAttributes(Map<String, Object> attributes) {
-		this.attributes = attributes;
-	}
+    public Map<String, Object> getAttributes() {
+        return attributes;
+    }
 
-	public String getMsg() {
-		return msg;
-	}
+    public void setAttributes(Map<String, Object> attributes) {
+        this.attributes = attributes;
+    }
 
-	public void setMsg(String msg) {
-		this.msg = msg;
-	}
+    public String getMsg() {
+        return msg;
+    }
 
-	public void setMsg(boolean success,String msg) {
-		this.success = success;
-		this.msg = msg;
-	}
+    public void setMsg(String msg) {
+        this.msg = msg;
+    }
 
-	public Object getObj() {
-		return obj;
-	}
+    public void setMsg(boolean success, String msg) {
+        this.success = success;
+        this.msg = msg;
+    }
 
-	public void setObj(Object obj) {
-		this.obj = obj;
-	}
+    public Object getObj() {
+        return obj;
+    }
 
-	public boolean isSuccess() {
-		return success;
-	}
+    public void setObj(Object obj) {
+        this.obj = obj;
+    }
 
-	public void setSuccess(boolean success) {
-		this.success = success;
-	}
+    public boolean isSuccess() {
+        return success;
+    }
 
-	public String getGrid() {
-		return grid;
-	}
+    public void setSuccess(boolean success) {
+        this.success = success;
+    }
 
-	public void setGrid(String grid) {
-		this.grid = grid;
-	}
-	
+    public String getGrid() {
+        return grid;
+    }
+
+    public void setGrid(String grid) {
+        this.grid = grid;
+    }
+
 }

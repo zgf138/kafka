@@ -12,13 +12,18 @@ public class UserController {
     @Autowired
     IUserService userService;
 
-    @RequestMapping(value="/login")
+    /**
+     * 登录
+     * @param user
+     * @return
+     */
+    @RequestMapping(value = "/login")
     public String login(User user) {
         //调用dao层
-        System.out.println("前端"+user);
+        System.out.println("前端" + user);
         User u = userService.getUser(user.getUsername());
-        System.out.println("数据库"+u);
-        if (u.getPassword().equals(user.getPassword())){
+        System.out.println("数据库" + u);
+        if (u.getPassword().equals(user.getPassword())) {
             return "success";
         }
         return "fail";
