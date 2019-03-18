@@ -4,9 +4,7 @@ package com.vanvov.kafka.utils;
 import java.net.InetAddress;
 
 /**
- *  版权归
  *  TODO 生成32位的UUID
- *  @author duosheng.mo  
  *  @DateTime 2016-2-23 下午09:24:42
  */
 public class UUIDG {

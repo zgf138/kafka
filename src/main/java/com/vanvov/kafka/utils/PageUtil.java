@@ -14,9 +14,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- *  版权归   gang of three
  *  @TODO 类说明     将结果转为json返回页面
- *  @author duosheng.mo  
  *  @DateTime 2018-1-25 下午04:22:42
  *  @version V1.0
  */

@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 
 /**
- *  版权归
- *  @author duosheng.mo  
- *  @DateTime 2016年4月20日 下午5:26:18
+ *
  */
 @SuppressWarnings("serial")
 public class Result implements Serializable{
